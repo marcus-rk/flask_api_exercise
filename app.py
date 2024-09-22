@@ -1,12 +1,6 @@
 from database import create_table, insert_members, check_if_members_exist
 from routes import app
 import requests, threading
-from dotenv import load_dotenv
-import os
-
-# Load github access token from .env file
-load_dotenv()
-github_access_token = os.getenv('GITHUB_ACCESS_TOKEN')
 
 ########################################################################################
 # Database Initialization and GitHub username update in db
@@ -40,8 +34,7 @@ def update_github_usernames():
     for member_id, github_username in members_to_update.items():
         url = f'http://127.0.0.1:5000/members/{member_id}/github_username'
         data = {'github_username': github_username}
-        headers = {'Authorization': f'token {github_access_token}' }
-        requests.patch(url=url, headers=headers, json=data)
+        requests.patch(url=url, json=data)
 
 ########################################################################################
 # Start API-server
