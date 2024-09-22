@@ -15,7 +15,7 @@ def init_database():
     if not check_if_members_exist():
         insert_members()
 
-# Updates the GitHub usernames for the first 5 members in the database
+# Updates the GitHub usernames for the first 10 members in the database
 def update_github_usernames():
     members_to_update = {
         1: "marcus-rk",
@@ -50,5 +50,5 @@ if __name__ == '__main__':
     server_thread = threading.Thread(target=run_server)
     server_thread.start()
     
-    # Update first 5 members github usernames
+    # Update first 10 members github usernames
     update_github_usernames()
