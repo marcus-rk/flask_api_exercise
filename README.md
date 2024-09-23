@@ -58,7 +58,11 @@ git clone https://github.com/marcus-rk/flask_api_exercise.git
 cd flask_api_exercise
 ```
 
-### 3. Install Required Dependencies
+### 3. Create .venv and Install Required Dependencies
+
+```sh
+python3 -m venv .venv
+```
 ```sh
 pip install -r requirements.txt
 ```
