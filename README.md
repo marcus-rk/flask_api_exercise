@@ -110,6 +110,7 @@ This are some of the available API endpoints for managing members:
   },
   ...
 ]
+```
 
 ### Fetch a Member by ID
 
