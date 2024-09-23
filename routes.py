@@ -13,11 +13,14 @@ def get_members():
 # GET: Get member by ID
 @app.route('/members/<int:member_id>', methods=['GET'])
 def get_member(member_id):
-    member = fetch_member_by_id(member_id)
-    if member:
-        return jsonify(member), 200
-    else:
-        return jsonify({"message": "Member not found"}), 404
+    try:
+        member = fetch_member_by_id(member_id)
+        if member:
+            return jsonify(member), 200
+        else:
+            return jsonify({"error": "Member not found"}), 404
+    except Exception as e:
+        return jsonify({"error": "An error occurred", "message": str(e)}), 500
 
 # POST: Create a new member
 @app.route('/members', methods=['POST'])
