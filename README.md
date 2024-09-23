@@ -76,7 +76,7 @@ This will:
 
 ## API Endpoints
 
-The following are the available API endpoints for managing members:
+This are some of the available API endpoints for managing members:
 
 ### Fetch All Members
 
