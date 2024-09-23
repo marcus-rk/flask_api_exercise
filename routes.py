@@ -7,8 +7,14 @@ app = Flask(__name__)
 # GET: Get all members
 @app.route('/members', methods=['GET'])
 def get_members():
-    members = fetch_all_members()
-    return jsonify(members), 200
+    try:
+        members = fetch_all_members()
+        if members:
+            return jsonify(members), 200
+        else:
+            return jsonify({"error": "Members not found"}), 404
+    except Exception as e:
+        return jsonify({"error": "An error occurred", "message": str(e)}), 500
 
 # GET: Get member by ID
 @app.route('/members/<int:member_id>', methods=['GET'])
