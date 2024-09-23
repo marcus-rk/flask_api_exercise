@@ -57,7 +57,7 @@ git clone https://github.com/marcus-rk/flask_api_exercise.git
 ```sh
 cd flask_api_exercise
 ```
-- Open the file in your desired code editor
+- Open project in your desired code editor
 
 ### 3. Create/activate .venv and Install Required Dependencies
 
