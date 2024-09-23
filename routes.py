@@ -31,29 +31,59 @@ def get_member(member_id):
 # POST: Create a new member
 @app.route('/members', methods=['POST'])
 def create_member():
-    new_member = request.json
-    insert_member(new_member)
-    return jsonify(new_member), 201
+    try:
+        new_member = request.json
+
+        # Check if any required fields are missing
+        required_fields = ['active','address','birth_date','email','first_name','gender','github_username', 'last_name','nationality','phonenumber']
+        for field in required_fields:
+            if field not in new_member:
+                return jsonify({"error": f"Missing required field: {field}"}), 400
+
+        insert_member(new_member)
+        return jsonify(new_member), 201
+    except Exception as e:
+        return jsonify({"error": "An error occurred while creating the member", "message": str(e)}), 500
 
 # PUT: Update a member by ID
 @app.route('/members/<int:member_id>', methods=['PUT'])
 def update_member_route(member_id):
-    updated_data = request.json
-    update_member(member_id, updated_data)
-    return jsonify({"message": "Member updated successfully"}), 200
+    try:
+        if not fetch_member_by_id(member_id):
+            return jsonify({"message": "Member not found"}), 404
+        
+        updated_data = request.json
+        update_member(member_id, updated_data)
+        return jsonify({"message": "Member updated successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": "An error occurred while updating the member", "message": str(e)}), 500
 
 # PATCH: Update GitHub username of a member by ID
 @app.route('/members/<int:member_id>/github_username', methods=['PATCH'])
 def update_github_username(member_id):
-    new_github_username = request.json.get('github_username')
-    update_github_username_by_id(member_id, new_github_username)
-    return jsonify({"message": "GitHub username updated successfully"}), 200
+    try:
+        if not fetch_member_by_id(member_id):
+            return jsonify({"message": "Member not found"}), 404
+
+        new_github_username = request.json.get('github_username')
+
+        update_github_username_by_id(member_id, new_github_username)
+        return jsonify({"message": "GitHub username updated successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": "An error occurred while updating the member", "message": str(e)}), 500
 
 # DELETE: Delete a member by ID
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def delete_member_route(member_id):
-    delete_member(member_id)
-    return jsonify({"message": "Member deleted successfully"}), 200
+    try:
+        if not fetch_member_by_id(member_id):
+            return jsonify({"message": "Member not found"}), 404
+
+        delete_member(member_id)
+        return jsonify({"message": "Member deleted successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": "An error occurred while deleting the member", "message": str(e)})
 
 # GET: Fetch repositories of a GitHub user by ID
 # Note: If the authenticated user searches for their own ID, 

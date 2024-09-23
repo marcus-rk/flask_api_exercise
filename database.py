@@ -61,7 +61,10 @@ def fetch_all_members():
     # Convert each row to a dictionary using dict(row)
     members_list = [dict(member) for member in members]
     connection.close()
-    return members_list
+    if members_list:
+        return members_list
+    else:
+        return None
 
 # Fetch member by ID
 def fetch_member_by_id(member_id):
@@ -70,8 +73,11 @@ def fetch_member_by_id(member_id):
     cursor.execute('SELECT * FROM members WHERE id = ?', (member_id,))
     member = cursor.fetchone()
     connection.close()
-    # Return converted member as dictionary
-    return dict(member)
+    # Return converted member as dictionary or None
+    if member:
+        return dict(member)
+    else:
+        return None
 
 # Insert a new member
 def insert_member(new_member):
