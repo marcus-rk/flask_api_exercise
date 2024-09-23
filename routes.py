@@ -120,6 +120,11 @@ def list_github_repos(member_id):
 
     return jsonify(repo_list), 200
 
+# Custom error handler for 404 Not Found
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({"error": "Resource not found"}), 404
+
 ########################################################################################
 # Helping functions
 ########################################################################################
