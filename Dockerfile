@@ -10,10 +10,10 @@ WORKDIR /app
 # Install the required Python dependencies
 RUN pip install -r requirements.txt
 
-# Flask port
+# Expose the port that Flask runs on (5000 by default)
 EXPOSE 5000
 
-# Define the default command to run the Flask app
+# Command to run the Flask app
 CMD ["python3", "app.py"]
 
 # BUILD: docker build -t flask_api_exercise .
