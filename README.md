@@ -46,7 +46,20 @@ flask_api_exercise/
 
 ## Setup Instructions with Docker
 
-### 1. Build the Docker Image
+### 0. Navigate to the Desired Directory
+Before cloning the repository, navigate to the directory where you want to clone it. For example:
+```sh
+cd /path/to/your/directory
+```
+Replace /path/to/your/directory with the path where you want to place the repository.
+
+### 1. Clone the Repository
+Clone the repository to your local machine using Git:
+```sh
+git clone https://github.com/marcus-rk/flask_api_exercise.git
+```
+
+### 2. Build the Docker Image
 
 Run the following command to build the Docker image:
 
@@ -60,7 +73,7 @@ This command will:
 - Install all dependencies specified in requirements.txt.
 - Copy the project files into the container.
 
-### 2. Run the Docker Container
+### 3. Run the Docker Container
 
 Once the image is built, run the container using the following command:
 
@@ -74,7 +87,7 @@ This command:
 - Maps port 5001 on your machine to port 5000 inside the container (-p 5001:5000).
 - Starts the Flask server inside the container.
 
-## Setup Instructions
+## Setup Instructions terminal
 
 ### 0. Navigate to the Desired Directory
 Before cloning the repository, navigate to the directory where you want to clone it. For example:
