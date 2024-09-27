@@ -17,4 +17,4 @@ EXPOSE 5000
 CMD ["python3", "app.py"]
 
 # BUILD: docker build -t flask_api_exercise .
-# RUN: docker run -it -p 5000:5000 flask_api_exercise   (-it allow for terminal access)
+# RUN: docker run -it -p 5001:5000 flask_api_exercise   (-it allow for terminal access)

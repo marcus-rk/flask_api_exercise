@@ -1,6 +1,6 @@
 from database import create_table, insert_members, check_if_members_exist
 from routes import app
-import requests, threading
+import requests, threading, time
 
 ########################################################################################
 # Database Initialization and GitHub username update in db
@@ -10,10 +10,12 @@ import requests, threading
 def init_database():
     # Create/Connect database and create table
     create_table()
+    print("Database has been initialized...")
 
     # Insert members only if the table is empty
     if not check_if_members_exist():
         insert_members()
+        print("Members has been inserted...")
 
 # Updates the GitHub usernames for the first 10 members in the database
 def update_github_usernames():
@@ -50,5 +52,8 @@ if __name__ == '__main__':
     server_thread = threading.Thread(target=run_server)
     server_thread.start()
     
+    # Add a delay to wait for the Flask server to fully start
+    time.sleep(5)  # Wait for 5 seconds
+
     # Update first 10 members github usernames
     update_github_usernames()
