@@ -1,4 +1,4 @@
-# Member Management API (Python, Flask & SQLite)
+# Member Management API (Python, Flask, Docker & SQLite)
 
 This project is a RESTful API for managing a database of members using Python, SQLite, and Flask. The API allows you to perform CRUD operations (Create, Read, Update, Delete) on member data stored in the database. The project includes integration to update GitHub usernames for members and auto-populates sample members into the database.
 
@@ -16,6 +16,11 @@ This project is a RESTful API for managing a database of members using Python, S
   ```sh
   git --version
   ```
+- **Docker (Optional):** If you prefer to run the project inside a Docker container, ensure Docker is installed on your system. You can verify the installation by running:
+
+  ```sh
+  docker --version
+  ```
 
 ## Project Structure
 The project is organized into several key files, each serving a specific purpose:
@@ -24,6 +29,7 @@ The project is organized into several key files, each serving a specific purpose
 flask_api_exercise/
 │
 ├── app.py
+├── Dockerfile
 ├── database.py
 ├── data_dict.py
 ├── members.db
@@ -37,6 +43,36 @@ flask_api_exercise/
 - **routes.py:** Defines the API endpoints for interacting with member data.
 - **members.db:** SQLite database where all member data is stored.
 - **requirements.txt:** Contains the required Python packages for the project.
+
+## Setup Instructions with Docker
+
+### 1. Build the Docker Image
+
+Run the following command to build the Docker image:
+
+```sh
+docker build -t flask_api_exercise .
+```
+
+This command will:
+
+- Use the Dockerfile to build an image named flask_api_exercise.
+- Install all dependencies specified in requirements.txt.
+- Copy the project files into the container.
+
+### 2. Run the Docker Container
+
+Once the image is built, run the container using the following command:
+
+```sh
+docker run -it -p 5001:5000 flask_api_exercise
+```
+
+This command:
+
+- Runs the container in interactive mode (-it).
+- Maps port 5001 on your machine to port 5000 inside the container (-p 5001:5000).
+- Starts the Flask server inside the container.
 
 ## Setup Instructions
 
