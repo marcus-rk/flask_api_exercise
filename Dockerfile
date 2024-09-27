@@ -1,5 +1,5 @@
 # Linux OS with Python
-FROM python:alpine3.17
+FROM python:alpine3.20
 
 # Copy new files/directories to image filesystem
 COPY . /app
@@ -10,8 +10,11 @@ WORKDIR /app
 # Install the required Python dependencies
 RUN pip install -r requirements.txt
 
-# Set Flask port
-EXPOSE 8080
+# Flask port
+EXPOSE 5000
 
 # Define the default command to run the Flask app
 CMD ["python3", "app.py"]
+
+# BUILD: docker build -t flask_api_exercise .
+# RUN: docker run -it -p 5000:5000 flask_api_exercise   (-it allow for terminal access)

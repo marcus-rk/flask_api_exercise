@@ -41,7 +41,7 @@ def update_github_usernames():
 ########################################################################################
 
 def run_server():
-    app.run(debug=False) # Set debug=False to prevent issues with threading
+    app.run(debug=False, host='0.0.0.0') # Set debug=False to prevent issues with threading
 
 if __name__ == '__main__':
     init_database()
