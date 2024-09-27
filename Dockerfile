@@ -11,7 +11,7 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 # Set Flask port
-EXPOSE 5000
+EXPOSE 8080
 
 # Define the default command to run the Flask app
 CMD ["python3", "app.py"]
